@@ -1,0 +1,5 @@
+--application.properties---->
+    Resources altında , içerisinde kullanacağımız sabit değişkenlerimizin olduğu  dosyamızı oluşturdk
+    --Spring framework e bu dosyamızı bildirmemiz gerekir. Bunu da;
+        --Configurasyon classımda class ismi üzerine @ProoertySource ("classpath:__properties ismi ne ise o yazılır")
+        --key-value olarak çalışır

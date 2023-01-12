@@ -4,6 +4,7 @@ import com.tpe.domain.Message;
 import com.tpe.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Component;
 @Scope("prototype") //  defaullta sıngleton dur. cagırdıgınızda aynı oje gelir gider. Ancak  @Scope("prototype")
                     // anostasyonu yazılırsa her seferinde yeni bir obje üreterek getirir
 public class MailService implements MessageService {
+    @Value("${app.email}")  // bu classın içerisinde maili nereden çağırırsak çağıralım app.properties dosyasındaki değişkenden alır gelir
+                            //email="email@email.com olarak getirir.  biz field lerin üzerine key leri yazarız
+    private String mail;
 
 
-//    //FİELD INJECTION
+//    -------------------- FİELD INJECTION  --------------------
 //    @Autowired      //  altındaki variable bakar ve işaretler. sanki newleyerek oluşturulmuş concrit class gibi
                                                     //bulunduğu classın herhangi bir yerinde kullanılabilir.----->Dependecy Injection bu oluyor
 //    @Qualifier("dbRepository")---->Seçici --> hangi Repository nin çalışmasını istiyorsak belirtiyoruz
@@ -22,7 +26,7 @@ public class MailService implements MessageService {
     // Benim kullandığım bağımlılık; class içerisinde başka bir classı bağımlılık olarak yazıyorsak kullanılır
 //   private Repository repository;
 
-    //SETTER INJECTION
+    //  -------------------- SETTER INJECTION  --------------------
    // private Repository repository;
 /*
 hemen set oluşturup üzerine @autowired ve @qualifier ekledik bu şekilde setter injection yapmı şolduk
@@ -34,7 +38,7 @@ hemen set oluşturup üzerine @autowired ve @qualifier ekledik bu şekilde sette
 //    }
 
 
-    //CONSTRUCTOR INJECTION
+    //  -------------------- CONSTRUCTOR INJECTION  --------------------
     /*
    TRİCK BİLGİ = eĞER class içerisinde bir tane const. varsa @Autowired yazmaya gerek yoktur
 
@@ -56,5 +60,5 @@ hemen set oluşturup üzerine @autowired ve @qualifier ekledik bu şekilde sette
 
 }
 /*
-GÜVENLİK AÇISINDAN EN FAZLA KULLANILAN CONSTRUCTOR INJECTION DUR0
+GÜVENLİK AÇISINDAN EN FAZLA KULLANILAN CONSTRUCTOR INJECTION DUR.
  */

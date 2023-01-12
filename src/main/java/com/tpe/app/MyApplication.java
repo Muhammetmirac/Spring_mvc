@@ -23,8 +23,10 @@ public class MyApplication {
         //Sprig kullanmak istediğim zaman bana service objesi gönderiyor
         //service instance variable dir.
 
-        MessageService service = context.getBean("mailService",MessageService.class);
-        MessageService service2 =context.getBean("mailService",MessageService.class);
+//        MessageService service = context.getBean("mailService",MessageService.class);
+//        MessageService service2 =context.getBean("mailService",MessageService.class);
+        MessageService service3 =context.getBean("smsService",MessageService.class);
+
         /*
          // interface yapısı olunca hangi child i bean olarak oluşturacağını anlayamadıgı için exception fırlatır
             Eğer MessageService interface'nden servis çağırırken servis classlarına @Component(servis adı  ne ise)
@@ -32,14 +34,15 @@ public class MyApplication {
         Bunun için classların başına @Component("smsService") gibi yazılır ve üst satırda olduğu gibi çağrılır
          */
 
+//
+//        if (service==service2){
+//            System.out.println("Aynı");
+//        }else{
+//            System.out.println("farklı");
+//        }
 
-        if (service==service2){
-            System.out.println("Aynı");
-        }else{
-            System.out.println("farklı");
-        }
-
-        service.sendMessage(message);
+       // service.sendMessage(message);
+        service3.sendMessage(message);
 
         context.close();// programı kapatırken oluşan bean leri yok ediyoruz.
 
